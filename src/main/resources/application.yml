@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: my-vocabulary
+  config:
+    import: optional:secrets.yml
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/my_vocabulary?createDatabaseIfNotExist=true
+    username: root
+    password: root
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
