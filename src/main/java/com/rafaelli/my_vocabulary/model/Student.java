@@ -1,21 +1,27 @@
 package com.rafaelli.my_vocabulary.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 
-@Data
+import java.util.List;
+
 @Entity
+@Data
 public class Student {
 
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private int id;
     private String username;
     private String password;
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "student_word",
+            joinColumns = {@JoinColumn(name = "student_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "word_id", referencedColumnName = "id")}
+    )
+    private List<Word> words;
 
 
 }
