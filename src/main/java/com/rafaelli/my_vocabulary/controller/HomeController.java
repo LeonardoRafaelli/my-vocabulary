@@ -25,7 +25,7 @@ public class HomeController {
     @GetMapping("/")
     public String homePage(Model m) {
 
-
+        m.addAttribute("studentWords", studentService.getLoggedUser().getWords());
 
         return "index";
     }

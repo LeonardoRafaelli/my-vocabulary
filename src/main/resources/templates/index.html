@@ -35,5 +35,13 @@
             </div>
         </form>
     </div>
+    <div class="container mt-3">
+        <div class="row row-cols-4">
+            <div th:each="word : ${studentWords}" class="mt-1 text-white">
+                <h4>[[${word.text}]]</h4>
+                <p>[[${word.description}]]</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
