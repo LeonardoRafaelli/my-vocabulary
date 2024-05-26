@@ -39,10 +39,19 @@ public class HomeController {
         word.setText(newWord);
         word.setDescription(description);
         word.setLanguage(LanguageCode.DE);
-
         word.setStudent(studentService.getLoggedUser());
 
         wordService.save(word);
+
+        return new RedirectView("/");
+    }
+
+    @PostMapping("/delete-word")
+    public RedirectView deleteWord(
+            @RequestParam("wordId") Integer wordId
+    ) {
+
+        wordService.deleteWord(wordId);
 
         return new RedirectView("/");
     }

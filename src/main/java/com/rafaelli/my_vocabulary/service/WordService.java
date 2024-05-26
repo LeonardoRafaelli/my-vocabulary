@@ -15,4 +15,7 @@ public class WordService {
         return wordRepo.save(word);
     }
 
+    public void deleteWord(Integer wordId) {
+        wordRepo.deleteById(wordId);
+    }
 }

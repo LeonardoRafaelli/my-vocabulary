@@ -23,5 +23,4 @@ public class StudentService {
     public Student getLoggedUser() {
         return studentRepo.getByUsername("leorafaelli");
     }
-
 }
