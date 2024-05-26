@@ -11,20 +11,29 @@
         <h1 class="text-center text-white">My Vocabulary</h1>
     </div>
     <div class="container mt-5" style="width: 25rem">
-        <div class="input-group mb-3">
-            <input type="text"
-                   class="form-control"
-                   placeholder="New word"
-                   aria-label="New word to be added to the cards"
-                   aria-describedby="button-addon1"
-            >
-            <button id="button-addon1"
-                    class="btn btn-primary"
-                    type="button"
-            >
-                Add word
-            </button>
-        </div>
+        <form class="form" action="/create-word" method="post">
+                <input name="newWord"
+                       type="text"
+                       required
+                       class="form-control"
+                       placeholder="New word"
+                       aria-label="New word to be added to the cards"
+                >
+                <input name="description"
+                       type="text"
+                       required
+                       class="form-control mt-1"
+                       placeholder="Word description"
+                       aria-label="Description of the new word"
+                >
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-primary mt-2 w-50"
+                        type="submit"
+                >
+                    Add word
+                </button>
+            </div>
+        </form>
     </div>
 </body>
 </html>

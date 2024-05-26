@@ -13,9 +13,10 @@ public class Word {
     @Id
     private int id;
     private String text;
+    private String description;
     @Enumerated(EnumType.STRING)
     private LanguageCode language;
 
-    @ManyToMany(mappedBy = "words", fetch = FetchType.LAZY)
-    private List<Student> students;
+    @ManyToOne
+    private Student student;
 }

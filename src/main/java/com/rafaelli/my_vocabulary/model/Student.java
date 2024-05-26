@@ -16,12 +16,12 @@ public class Student {
     private String username;
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "student_word",
-            joinColumns = {@JoinColumn(name = "student_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "word_id", referencedColumnName = "id")}
-    )
+    @OneToMany(mappedBy = "student")
     private List<Word> words;
 
+    @Override
+    public String toString() {
+        return STR."username: \{username}, password: \{password}";
+    }
 
 }

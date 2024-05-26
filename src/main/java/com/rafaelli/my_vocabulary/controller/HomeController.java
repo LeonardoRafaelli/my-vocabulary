@@ -7,7 +7,11 @@ import com.rafaelli.my_vocabulary.service.StudentService;
 import com.rafaelli.my_vocabulary.service.WordService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -19,8 +23,28 @@ public class HomeController {
     private final WordService wordService;
 
     @GetMapping("/")
-    public String homePage() {
+    public String homePage(Model m) {
+
+
+
         return "index";
+    }
+
+    @PostMapping("/create-word")
+    public RedirectView createWord(
+            @RequestParam("newWord") String newWord,
+            @RequestParam("description") String description
+    ){
+        Word word = new Word();
+        word.setText(newWord);
+        word.setDescription(description);
+        word.setLanguage(LanguageCode.DE);
+
+        word.setStudent(studentService.getLoggedUser());
+
+        wordService.save(word);
+
+        return new RedirectView("/");
     }
 
 }
