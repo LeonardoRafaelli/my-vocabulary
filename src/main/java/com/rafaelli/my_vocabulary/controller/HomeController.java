@@ -56,4 +56,10 @@ public class HomeController {
         return new RedirectView("/");
     }
 
+
+    @GetMapping("/learn")
+    public String learnPage(){
+        return "learn";
+    }
+
 }
