@@ -11,9 +11,8 @@
     <div class="container mt-4">
         <h1 class="text-center text-white">My Vocabulary</h1>
     </div>
-    <div style="display:flex;">
-        <div style="flex: 2;"></div>
-        <div class="mt-4" style="width: 25rem; flex: 3;">
+    <div class="d-flex justify-content-center">
+        <div class="mt-4" style="width: 25rem;">
             <form class="form" action="/create-word" method="post">
                 <input name="newWord"
                        type="text"
@@ -29,7 +28,10 @@
                        placeholder="Word description"
                        aria-label="Description of the new word"
                 >
-                <div class="d-flex justify-content-end">
+                <div class="d-flex justify-content-between">
+                    <a class="btn btn-secondary mt-2 w-25" href="/learn">
+                        Learn
+                    </a>
                     <button class="btn btn-primary mt-2 w-50"
                             type="submit"
                     >
@@ -37,11 +39,6 @@
                     </button>
                 </div>
             </form>
-        </div>
-        <div style="flex: 2;">
-            <a class="btn btn-secondary" href="/learn">
-                Learn
-            </a>
         </div>
     </div>
     <div class="mx-5 mt-4">
