@@ -58,7 +58,12 @@ public class HomeController {
 
 
     @GetMapping("/learn")
-    public String learnPage(){
+    public String learnPage(Model m){
+
+        Word word = studentService.getStudentRandomWord();
+
+        m.addAttribute("word", word);
+
         return "learn";
     }
 
