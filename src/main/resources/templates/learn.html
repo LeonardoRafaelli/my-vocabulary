@@ -8,28 +8,53 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body class="bg-dark">
-    <div class="container mt-4">
-        <h1 class="text-center text-white">My Vocabulary</h1>
+    <div class="mx-5 mt-4">
+        <div class="d-flex">
+            <div style="flex: 1;">
+                <a class="text-white btn btn-outline-secondary" href="/"><- Back</a>
+            </div>
+            <h1 class="text-center text-white" style="flex: 3">My Vocabulary</h1>
+            <div style="flex: 1"></div>
+        </div>
     </div>
     <div class="d-flex justify-content-center">
         <div class="mt-4" style="width: 25rem;">
         </div>
     </div>
 
-    <div class="container text-center mt-4 text-white">
-        <p>[[${word.text}]]</p>
+    <div class="container d-flex flex-column justify-content-center align-items-center w-100">
+        <div id="wordTextCard"
+             class="text-white"
+             style="background-color:#454545; width: 70%; height:10rem; border-radius: 10px;"
+        >
+            <div class="h-50 d-flex justify-content-center align-items-center">
+                <h5 class="m-0 p-0">[[${word.text}]]</h5>
+            </div>
+            <div class="h-50 d-flex btn justify-content-center align-items-center word-desc"
+                style="background-color: #666; color: transparent; text-shadow:0 0 8px #fff; border-radius: 0 0 10px 10px;"
+            >
+                <h5 class="m-0 p-0">[[${word.description}]]</h5>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end"
+            style="width: 70%;">
+            <form action="/learn" method="get">
+                <button type="submit" class="btn btn-secondary text-white mt-3">
+                    Next
+                </button>
+            </form>
+        </div>
     </div>
+
 
 </body>
 <script>
 
-    $(".word-card").click(function() {
-        $(this).find("#wordTextCard").hide();
-        $(this).find("#wordDescriptionCard").show();
+    $(".word-desc").click(function() {
+        $(this).css("color", "white");
 
         $(this).mouseleave(function() {
-            $(this).find("#wordTextCard").show();
-            $(this).find("#wordDescriptionCard").hide();
+            $(this).css("color", "transparent");
         });
     })
 
