@@ -1,7 +1,7 @@
 package com.rafaelli.my_vocabulary.controller;
 
-import com.rafaelli.my_vocabulary.model.LanguageCode;
 import com.rafaelli.my_vocabulary.model.Student;
+import com.rafaelli.my_vocabulary.model.enums.LanguageCode;
 import com.rafaelli.my_vocabulary.model.Word;
 import com.rafaelli.my_vocabulary.service.StudentService;
 import com.rafaelli.my_vocabulary.service.WordService;
@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
@@ -26,7 +25,11 @@ public class HomeController {
     @GetMapping("/")
     public String homePage(Model m) {
 
-        m.addAttribute("studentWords", studentService.getLoggedInStudent().getWords());
+        Student loggedInStudent = studentService.getLoggedInStudent();
+        List<Word> words = studentService.getStudentWords();
+
+        m.addAttribute("studentWords", words);
+        m.addAttribute("student", loggedInStudent);
 
         return "index";
     }

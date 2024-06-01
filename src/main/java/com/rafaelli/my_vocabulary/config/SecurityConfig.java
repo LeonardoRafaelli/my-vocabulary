@@ -24,12 +24,13 @@ public class SecurityConfig {
 
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
-                        req -> req.requestMatchers("/login", "/register").permitAll()
+                        req -> req.requestMatchers("/auth/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(
-                        form -> form.loginPage("/login").permitAll()
-                        .defaultSuccessUrl("/")
+                        form -> form.loginPage("/auth/login").permitAll()
+                                .loginProcessingUrl("/auth/login")
+                                .defaultSuccessUrl("/")
                 )
                 .logout(LogoutConfigurer::permitAll);
 

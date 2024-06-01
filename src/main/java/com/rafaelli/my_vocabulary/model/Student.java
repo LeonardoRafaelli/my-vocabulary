@@ -1,8 +1,7 @@
 package com.rafaelli.my_vocabulary.model;
 
-import com.rafaelli.my_vocabulary.config.UserRole;
+import com.rafaelli.my_vocabulary.model.enums.UserRole;
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
@@ -16,9 +15,18 @@ public class Student {
     private int id;
     private String email;
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
     private UserRole userRole;
 
     @OneToMany(mappedBy = "student")
     private List<Word> words;
+
+
+    @Override
+    public String toString(){
+        return STR."Email: \{this.email}\nPassword: \{this.password}\nRole: \{this.userRole}\nWords: \{this.words}";
+    }
 
 }

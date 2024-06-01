@@ -1,9 +1,8 @@
 package com.rafaelli.my_vocabulary.model;
 
+import com.rafaelli.my_vocabulary.model.enums.LanguageCode;
 import jakarta.persistence.*;
 import lombok.Data;
-
-import java.util.List;
 
 @Entity
 @Data
@@ -19,4 +18,9 @@ public class Word {
 
     @ManyToOne
     private Student student;
+
+    @Override
+    public String toString(){
+        return STR."Text: \{text}\nDescription: \{description}";
+    }
 }

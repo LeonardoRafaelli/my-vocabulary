@@ -4,12 +4,22 @@
     <meta charset="UTF-8">
     <title>My Vocabulary</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body class="bg-dark">
-    <div class="container mt-4">
-        <h1 class="text-center text-white">My Vocabulary</h1>
+    <div class="mx-5 mt-4">
+        <div class="d-flex">
+            <div style="flex: 1;">
+                <a id="logout-btn" class="btn d-flex" style="font-size: 12px; border: none; color: #aaa;" href="/logout">
+                    Logout
+                    <p id="logout-sad-face" class="ms-2" style="display: none;">:(</p>
+                </a>
+            </div>
+            <h1 class="text-center text-white" style="flex: 3">My Vocabulary</h1>
+            <div class="text-end" style="flex: 1; font-size: 12px; color: #aaa;">
+                <p>[[${student.email}]]</p>
+            </div>
+        </div>
     </div>
     <div class="d-flex justify-content-center">
         <div class="mt-4" style="width: 25rem;">
@@ -29,9 +39,11 @@
                        aria-label="Description of the new word"
                 >
                 <div class="d-flex justify-content-between">
-                    <a class="btn btn-secondary mt-2 w-25" href="/learn">
-                        Learn
-                    </a>
+                    <div class="mt-2 w-25">
+                        <a th:if="${studentWords}" class="btn btn-secondary" href="/learn">
+                            Learn
+                        </a>
+                    </div>
                     <button class="btn btn-primary mt-2 w-50"
                             type="submit"
                     >
@@ -43,7 +55,7 @@
     </div>
     <div class="mx-5 mt-4">
         <div class="row row-cols-5">
-            <div th:each="word, iterStats : ${studentWords}"
+            <div th:if="${studentWords}" th:each="word, iterStats : ${studentWords}"
                  class="p-1 word-card"
             >
                 <div id="wordTextCard"
@@ -97,14 +109,23 @@
     </div>
 </body>
     <script>
+        $("#logout-btn").mouseenter(function() {
+            let sadFace = $(this).find("#logout-sad-face");
+            sadFace.show();
+            $(this).mouseleave(function() {
+                sadFace.hide();
+            })
+        })
 
         $(".word-card").click(function() {
-            $(this).find("#wordTextCard").hide();
-            $(this).find("#wordDescriptionCard").show();
+            let wordTextCard = $(this).find("#wordTextCard");
+            let wordDescriptionCard =  $(this).find("#wordDescriptionCard");
+            wordTextCard.hide();
+            wordDescriptionCard.show();
 
             $(this).mouseleave(function() {
-                $(this).find("#wordTextCard").show();
-                $(this).find("#wordDescriptionCard").hide();
+                wordTextCard.show();
+                wordDescriptionCard.hide();
             });
         })
 
