@@ -4,14 +4,11 @@ import com.rafaelli.my_vocabulary.model.Student;
 import com.rafaelli.my_vocabulary.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
-@RequestMapping("/auth")
 @Controller
+@RequestMapping("/auth")
 public class AuthController {
 
     @Autowired
@@ -29,9 +26,13 @@ public class AuthController {
 
     @PostMapping("/create-student")
     public RedirectView createStudent(
-            @ModelAttribute Student student
+            @RequestParam("email") String studentEmail,
+            @RequestParam("password") String studentPassword
     ){
-        System.out.println(STR."Raw \{student}");
+        Student student = new Student();
+        student.setEmail(studentEmail);
+        student.setPassword(studentPassword);
+
         System.out.println(studentService.save(student));
 
         return new RedirectView("auth/login");
