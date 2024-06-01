@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
@@ -25,7 +26,7 @@ public class HomeController {
     @GetMapping("/")
     public String homePage(Model m) {
 
-        m.addAttribute("studentWords", studentService.getLoggedUser().getWords());
+        m.addAttribute("studentWords", studentService.getLoggedInStudent().getWords());
 
         return "index";
     }
@@ -39,7 +40,7 @@ public class HomeController {
         word.setText(newWord);
         word.setDescription(description);
         word.setLanguage(LanguageCode.DE);
-        word.setStudent(studentService.getLoggedUser());
+        word.setStudent(studentService.getLoggedInStudent());
 
         wordService.save(word);
 
