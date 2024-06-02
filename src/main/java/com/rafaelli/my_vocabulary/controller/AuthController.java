@@ -15,12 +15,12 @@ public class AuthController {
     private StudentService studentService;
 
     @GetMapping("/login")
-    public String getLoginPage(){
+    public String loginPage(){
         return "auth/login";
     }
 
     @GetMapping("/register")
-    public String getRegisterPage(){
+    public String registerPage(){
         return "auth/register";
     }
 
@@ -33,8 +33,9 @@ public class AuthController {
         student.setEmail(studentEmail);
         student.setPassword(studentPassword);
 
-        System.out.println(studentService.save(student));
+        studentService.save(student);
 
         return new RedirectView("auth/login");
     }
+
 }

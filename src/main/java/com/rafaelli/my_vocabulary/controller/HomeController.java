@@ -54,21 +54,23 @@ public class HomeController {
     public RedirectView deleteWord(
             @RequestParam("wordId") Integer wordId
     ) {
-
         wordService.deleteWord(wordId);
 
         return new RedirectView("/");
     }
 
-
     @GetMapping("/learn")
     public String learnPage(Model m){
 
         Word word = studentService.getStudentRandomWord();
-
         m.addAttribute("word", word);
 
         return "learn";
+    }
+
+    @GetMapping("/error")
+    public String errorPage(){
+        return "error";
     }
 
 }
