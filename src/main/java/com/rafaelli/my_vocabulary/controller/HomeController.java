@@ -39,13 +39,8 @@ public class HomeController {
             @RequestParam("newWord") String newWord,
             @RequestParam("description") String description
     ){
-        Word word = new Word();
-        word.setText(newWord);
-        word.setDescription(description);
-        word.setLanguage(LanguageCode.DE);
-        word.setStudent(studentService.getLoggedInStudent());
 
-        wordService.save(word);
+        wordService.save(newWord, description, LanguageCode.DE);
 
         return new RedirectView("/");
     }
