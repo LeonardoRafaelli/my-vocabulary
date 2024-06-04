@@ -39,9 +39,12 @@ public class StudentService {
         return optionalStudent.get();
     }
 
-    public Student save(Student student){
-        student.setPassword(passwordEncoder.encode(student.getPassword()));
+    public Student save(String studentUsername, String studentPassword){
+        Student student = new Student();
+        student.setEmail(studentUsername);
+        student.setPassword(passwordEncoder.encode(studentPassword));
         student.setUserRole(UserRole.USER);
+
         return studentRepo.save(student);
     }
 

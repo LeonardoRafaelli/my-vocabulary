@@ -29,11 +29,8 @@ public class AuthController {
             @RequestParam("email") String studentEmail,
             @RequestParam("password") String studentPassword
     ){
-        Student student = new Student();
-        student.setEmail(studentEmail);
-        student.setPassword(studentPassword);
 
-        studentService.save(student);
+        studentService.save(studentEmail, studentPassword);
 
         return new RedirectView("auth/login");
     }
