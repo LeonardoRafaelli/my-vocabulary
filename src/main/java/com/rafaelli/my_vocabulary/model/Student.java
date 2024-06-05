@@ -23,10 +23,4 @@ public class Student {
     @OneToMany(mappedBy = "student")
     private List<Word> words;
 
-
-    @Override
-    public String toString(){
-        return STR."Email: \{this.email}\nPassword: \{this.password}\nRole: \{this.userRole}\nWords: \{this.words}";
-    }
-
 }
