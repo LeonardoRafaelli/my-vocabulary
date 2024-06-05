@@ -14,7 +14,7 @@
 	<name>my-vocabulary</name>
 	<description>Project to create a way to reinforce learned words at any language</description>
 	<properties>
-		<java.version>22</java.version>
+		<java.version>18</java.version>
 	</properties>
 	<dependencies>
 		<dependency>

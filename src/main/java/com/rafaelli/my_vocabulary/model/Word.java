@@ -18,9 +18,4 @@ public class Word {
 
     @ManyToOne
     private Student student;
-
-    @Override
-    public String toString(){
-        return STR."Text: \{text}\nDescription: \{description}";
-    }
 }
