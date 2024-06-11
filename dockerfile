@@ -4,10 +4,9 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 
-# Stage 2 - Enable detailed logging during the build
+# Stage 2 - Run the application
 RUN mvn clean install -X || mvn clean install -DskipTests
 
-# Run the application
 FROM openjdk:17
 WORKDIR /app
 COPY --from=build /app/target/my-vocabulary-0.0.1-SNAPSHOT.jar ./app-aws.jar

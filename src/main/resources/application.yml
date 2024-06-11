@@ -2,7 +2,7 @@ spring:
   application:
     name: my-vocabulary
   config:
-    import: secrets.yml
+    import: optional:secrets.yml
 
   jpa:
     hibernate:
