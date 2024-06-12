@@ -76,15 +76,15 @@
                             <p class="m-0 p-0" style="font-size: 12px; color:#454545;">[[${word.description}]]</p>
                         </div>
                         <div style="width:15%" class="d-flex flex-column justify-content-between">
-                            <div class="position-relative d-flex justify-content-start w-100" style="background-color: red;">
-                                <form action="/delete-word" method="post">
+                            <div class="w-100">
+                                <form class="d-flex justify-content-end align-items-start" action="/delete-word" method="post">
                                     <input hidden="hidden" name="wordId" th:value="${word.id}"/>
-                                    <button type="submit"
-                                            title="Delete word"
-                                            class="btn-close delete-word position-absolute"
-                                            style="font-size:10px; top:3px; right:3px;">
-                                    </button>
+                                    <input type="image" name="submit" th:src="@{img/bin.png}"  alt="Trash can submit deletion"
+                                           style="width:12px; margin: 0.3rem 0.3rem 0 0"
+                                    >
                                 </form>
+                            </div>
+                            <div>
                             </div>
                         </div>
                     </div>
